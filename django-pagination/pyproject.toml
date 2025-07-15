@@ -8,3 +8,99 @@ dependencies = [
     "django>=5.2.4",
     "djangorestframework>=3.16.0",
 ]
+
+[dependency-groups]
+dev = [
+    "ruff==0.12.3",
+]
+
+
+[tool.ruff]
+line-length = 180
+
+# Assume Python 3.12.
+target-version = "py312"
+
+exclude = [
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".hg",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "venv",
+    "resources",
+    "**/migrations/*.py",
+]
+
+# Suggestions to add to select: EM
+lint.select = [
+	"A",
+    "B",
+    "C",
+    "E",
+    "F",
+    "Q",
+    "I",
+    "PT",
+    "SIM",
+    "TID",
+    "PLC",
+    "PLE",
+    "PLR",
+]
+lint.ignore = [
+	# https://docs.astral.sh/ruff/formatter/#format-suppression
+	"COM812",
+	"COM819",
+	"E111",
+	"E114",
+	"E117",
+	"D206",
+	"D300",
+	"ISC001",
+	"ISC002",
+	"Q000",
+	"Q001",
+	"Q002",
+	"Q003",
+	"W191",
+	"B026",
+    "F403",
+    "PLC0415",
+	"N805", # Missing type annotation for self in method (Pydantic don't like this)
+	"SIM108",  # Use ternary operator {contents} instead of if-else-block
+	"RUF009",  # Missing dataclass field.
+	"N999", # Invalid module name. Ruff complains about the project name. Name: test-api / Expected: test_api
+]
+lint.extend-ignore = [
+    "A003",
+    "PLR0913",
+    "PLR0911",
+    "PLR0915",
+    "PLR0912",
+]
+
+[tool.ruff.format]
+quote-style = "single"
+indent-style = "space"
+
+[tool.ruff.lint.isort]
+case-sensitive = true
+split-on-trailing-comma = true
+
+[tool.ruff.lint.mccabe]
+max-complexity = 30
